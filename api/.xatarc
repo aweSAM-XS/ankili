@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://aweSAM-s-workspace-kmm9g7.us-east-1.xata.sh/db/ankili",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
