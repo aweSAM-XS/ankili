@@ -1,6 +1,5 @@
-import { getXataClient } from '../xata';
 import { Request, Response } from 'express';
-const client = getXataClient();
+import { client } from '../index';
 
 export const createSet = async (req: Request, res: Response) => {
   try {
@@ -12,7 +11,7 @@ export const createSet = async (req: Request, res: Response) => {
       private: isPrivate,
       cards: 10,
     });
-    return res.json({ success: true });
+    return res.json({ message: 'Set created successfully' });
   } catch (error) {
     return res.status(500).json({ error });
   }
@@ -48,7 +47,7 @@ export const updateSet = async (req: Request, res: Response) => {
       image,
       private: isPrivate,
     });
-    return res.json({ success: true });
+    return res.json({ message: 'Set updated successfully' });
   } catch (error) {
     return res.status(500).json({ error });
   }
@@ -57,7 +56,7 @@ export const updateSet = async (req: Request, res: Response) => {
 export const deleteSet = async (req: Request, res: Response) => {
   try {
     await client.db.sets.delete(req.params.id);
-    return res.json({ success: true });
+    return res.json({ message: 'Set deleted successfully' });
   } catch (error) {
     return res.status(500).json({ error });
   }
@@ -70,7 +69,7 @@ export const createUserSet = async (req: Request, res: Response) => {
       user,
       set,
     });
-    return res.json({ success: true });
+    return res.json({ message: 'UserSet created successfully' });
   } catch (error) {
     return res.status(500).json({ error });
   }
