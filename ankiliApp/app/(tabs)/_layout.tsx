@@ -1,55 +1,57 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import Colors from '@/constants/Colors';
 import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native';
 
-import Colors from '../../constants/Colors';
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const Layout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        headerStyle: {
+          backgroundColor: Colors.primary,
+        },
+        headerTitle: 'Home',
+        headerTintColor: '#fff',
+        tabBarActiveTintColor: Colors.primary,
       }}>
       <Tabs.Screen
-        name="index"
+        name='Sets'
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='home' color={color} size={size} />
+          ),
           headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
+            <Link href='/'>
+              <TouchableOpacity>
+                <Ionicons
+                  name='add'
+                  color='#fff'
+                  size={30}
+                  style={{ marginRight: 10 }}
+                />
+              </TouchableOpacity>
             </Link>
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name='Search'
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='search' color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name='Profile'
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='person' color={color} size={size} />
+          ),
         }}
       />
     </Tabs>
   );
-}
+};
+
+export default Layout;
