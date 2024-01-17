@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import {client } from '../index';
+import { client } from '../index';
 
 export const addCard = async (req: Request, res: Response) => {
   try {
@@ -18,7 +18,7 @@ export const addCard = async (req: Request, res: Response) => {
     }
     return res.json({ message: 'card added successfully' });
   } catch (error) {
-    return res.status(500).json({ error });
+    return res.status(500).json(error);
   }
 };
 
@@ -28,8 +28,8 @@ export const getSetCards = async (req: Request, res: Response) => {
       .select(['id', 'question', 'answer', 'image', 'set'])
       .filter({ set: req.query.setid })
       .getAll();
-    return res.status(200).json({ cards });
+    return res.status(200).json(cards);
   } catch (error) {
-    return res.status(500).json({ error });
+    return res.status(500).json(error);
   }
 };

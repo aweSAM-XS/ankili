@@ -23,18 +23,18 @@ export const getSets = async (req: Request, res: Response) => {
       .select(['id', 'title', 'description', 'image', 'cards'])
       // .filter({ private: false })
       .getAll();
-    return res.status(200).json({ sets });
+    return res.status(200).json(sets);
   } catch (error) {
-    return res.status(500).json({ error });
+    return res.status(500).json(error);
   }
 };
 
 export const getSet = async (req: Request, res: Response) => {
   try {
     const set = await client.db.sets.read(req.params.id);
-    return res.status(200).json({ set });
+    return res.status(200).json(set);
   } catch (error) {
-    return res.status(500).json({ error });
+    return res.status(500).json(error);
   }
 };
 
@@ -83,9 +83,9 @@ export const getUserSets = async (req: Request, res: Response) => {
       .select(['id', 'set.*'])
       .filter({ user: `${user}` })
       .getAll();
-    return res.status(200).json({ userSets });
+    return res.status(200).json(userSets);
   } catch (error) {
-    return res.status(500).json({ error });
+    return res.status(500).json(error);
   }
 };
 
